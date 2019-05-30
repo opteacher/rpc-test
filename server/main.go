@@ -8,10 +8,11 @@ import (
 
 func handleConnection(conn net.Conn) {
 	log.Printf("收到来自%s的连接请求\n", conn.RemoteAddr().String())
-	if status, err := bufio.NewReader(conn).ReadString('\n'); err != nil {
+	if data, err := bufio.NewReader(conn).ReadString('\n'); err != nil {
 		log.Fatalf("读取数据发生错误：%v", err)
 	} else {
-		log.Println(status)
+		log.Println(data)
+		conn.Write([]byte("欢迎光临！"))
 	}
 }
 
