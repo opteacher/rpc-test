@@ -4,6 +4,8 @@ import (
 	"net"
 	"log"
 	"bufio"
+
+	"rpcserver/service"
 )
 
 func handleConnection(conn net.Conn) {
@@ -17,7 +19,9 @@ func handleConnection(conn net.Conn) {
 }
 
 func main()  {
-	if ln, err := net.Listen("tcp", ":21700"); err != nil {
+	if _, err := service.NewDiscovery(); err != nil {
+		log.Fatalf("初始化服务发现者失败：%v", err)
+	} else if ln, err := net.Listen("tcp", ":21700"); err != nil {
 		log.Fatalf("监听端口异常：%v", err)
 	} else {
 		log.Printf("端口%s监听中...\n", ln.Addr().String())

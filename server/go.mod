@@ -1,3 +1,3 @@
-module rpc-server
+module rpcserver
 
 go 1.12
