@@ -28,10 +28,9 @@ func handleConnection(conn net.Conn) {
 
 func parseReqParams(data []byte) (domain.Reqs, error) {
 	var req domain.Reqs
-	log.Println("收到请求：", string(data))
+	log.Printf("收到请求：%s", string(data))
 	err := json.Unmarshal(data, &req)
 	return req, err
-	
 }
 
 func wrapError(fstr string, params ...interface{}) []byte {

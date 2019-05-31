@@ -82,7 +82,7 @@ func (ds *Discovery) CallMethod(method string, params []interface{}) ([]byte, er
 	if strs := strings.Split(method, "."); len(strs) != 2 {
 		return nil, fmt.Errorf("需要指定请求的服务和接口名：%s", method)
 	} else if sname, mname := strs[0], strs[1]; false {
-		return nil, nil
+		return nil, fmt.Errorf("能进来有鬼了 @o@")
 	} else if svc, exs := ds.sm[sname]; !exs {
 		return nil, fmt.Errorf("未找到服务：%s", sname)
 	} else if !utils.Includes(ds.mm[sname], mname) {
